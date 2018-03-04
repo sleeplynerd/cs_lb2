@@ -1,6 +1,7 @@
 #include "cardanus_grid.h"
 #include "gtest/gtest.h"
 #include <string>
+#include <iostream>
 
 using namespace std;
 
@@ -34,13 +35,5 @@ TEST(Cardanus_Grid, to_string) {
     grid.set_at(2,1,'h');
     grid.set_at(2,2,'i');
 
-    EXPECT_EQ(grid.get_at(0,0), 'a');
-    EXPECT_EQ(grid.get_at(0,1), 'b');
-    EXPECT_EQ(grid.get_at(0,2), 'c');
-    EXPECT_EQ(grid.get_at(1,0), 'd');
-    EXPECT_EQ(grid.get_at(1,1), 'e');
-    EXPECT_EQ(grid.get_at(1,2), 'f');
-    EXPECT_EQ(grid.get_at(2,0), 'g');
-    EXPECT_EQ(grid.get_at(2,1), 'h');
-    EXPECT_EQ(grid.get_at(2,2), 'i');
+    cout << grid.to_string(true) << endl;
 }

@@ -315,6 +315,7 @@ if %errorlevel% neq 0 goto :VCEnd</Command>
   <ItemGroup>
     <ClCompile Include="D:\TemporaryFiles\ИБ2\cs_lb2\test\test_cardanus_grid.cpp"  />
     <ClCompile Include="D:\TemporaryFiles\ИБ2\cs_lb2\test\test_cardanus_key.cpp"  />
+    <ClCompile Include="D:\TemporaryFiles\ИБ2\cs_lb2\test\test_decryptor.cpp"  />
     <ClCompile Include="D:\TemporaryFiles\ИБ2\cs_lb2\test\test_rotation_sequence.cpp"  />
   </ItemGroup>
   <ItemGroup>

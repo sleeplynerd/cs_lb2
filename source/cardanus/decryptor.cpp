@@ -60,6 +60,14 @@ string Decryptor::decr(Cardanus_Grid grid,
                 }
             }
         }
+        switch (dir) {
+        case Rotation_Sequence::CW:
+            key.rotate_cw();
+            break;
+        case Rotation_Sequence::CCW:
+            key.rotate_ccw();
+            break;
+        }
     }
 
     return text;

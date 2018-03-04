@@ -7,6 +7,9 @@
     <ClCompile Include="D:\TemporaryFiles\ИБ2\cs_lb2\test\test_cardanus_key.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
+    <ClCompile Include="D:\TemporaryFiles\ИБ2\cs_lb2\test\test_decryptor.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
     <ClCompile Include="D:\TemporaryFiles\ИБ2\cs_lb2\test\test_rotation_sequence.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
