@@ -22,7 +22,7 @@ public:
     void                rotate              (Rotation_Sequence);
     void                rotate_cw           ();
     void                rotate_ccw          ();
-    void                restore_origin      ();
+    void                rotate_origin       ();
     void                open_at             (int row, int col);
     void                close_at            (int row, int col);
     void                close_all           ();

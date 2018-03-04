@@ -2,3 +2,7 @@ D:/TemporaryFiles/ИБ2/cs_lb2/build/CMakeFiles/ALL_BUILD.dir
 D:/TemporaryFiles/ИБ2/cs_lb2/build/CMakeFiles/ZERO_CHECK.dir
 D:/TemporaryFiles/ИБ2/cs_lb2/build/source/cardanus/CMakeFiles/cardanus.dir
 D:/TemporaryFiles/ИБ2/cs_lb2/build/source/cardanus/CMakeFiles/ALL_BUILD.dir
+D:/TemporaryFiles/ИБ2/cs_lb2/build/test/CMakeFiles/test_cardanus.dir
+D:/TemporaryFiles/ИБ2/cs_lb2/build/test/googletest/CMakeFiles/gtest.dir
+D:/TemporaryFiles/ИБ2/cs_lb2/build/test/googletest/CMakeFiles/gtest_main.dir
+D:/TemporaryFiles/ИБ2/cs_lb2/build/test/googletest/CMakeFiles/ALL_BUILD.dir

@@ -46,7 +46,8 @@
             "name": "Win32",
             "includePath": [
                 "${workspaceRoot}/source",
-                "${workspaceRoot}"
+                "${workspaceRoot}",
+                "${workspaceRoot}/test/googletest/include/gtest/"
             ],
             "defines": [
                 "_DEBUG",

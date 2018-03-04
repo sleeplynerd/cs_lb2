@@ -1,4 +1,5 @@
 project(cardanus)
+include_directories(${cardanus_SOURCE_DIR})
 add_library(cardanus
     cardanus_grid.cpp
     cardanus_grid.h

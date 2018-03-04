@@ -29,7 +29,7 @@ Cardanus_Key::Cardanus_Key(const Cardanus_Key& key) : SIZE(key.SIZE) {
     }
     for (int i = 0; i < SIZE; ++i) {
         for (int j = 0; j < SIZE; ++j) {
-            close_at(i,j);
+            m_grid[i][j] = key.m_grid[i][j];
         }
     }
 }
@@ -42,6 +42,8 @@ Cardanus_Key Cardanus_Key::operator=(const Cardanus_Key& key) {
                 m_grid[i][j] = key.is_opened(i,j);
             }
         }
+    } else {
+        throw Matrix_Dimension_Err();
     }
     return *this;
 }
@@ -103,7 +105,7 @@ void Cardanus_Key::rotate_ccw() {
     transpose();
 }
 
-void Cardanus_Key::restore_origin() {
+void Cardanus_Key::rotate_origin() {
     while (m_origin_offset != 0) {
         if (m_origin_offset > 0) {
             rotate_ccw();
@@ -165,19 +167,20 @@ bool Cardanus_Key::is_valid() const {
 
 string Cardanus_Key::to_string(bool is_numbered) const {
     const char  NEWLINE = '\n';
-    const char  SPACE   = '\t';
-    const char  OPENED  = '_';
-    const char  CLOSED  = 'X';
+    const char  SPACE   = ' ';
+    const char  OPENED  = 'O';
+    const char  CLOSED  = '-';
     string      text;
 
     /* Header */
     if (is_numbered) {
         text.append(2, SPACE);
-        for (int i = 0; i < 0; ++i) {
+        for (int i = 0; i < SIZE; ++i) {
             text.append(std::to_string(i));
-            text.push_back(NEWLINE);
+            text.push_back(SPACE);
         }
     }
+    text.push_back(NEWLINE);
 
     /* Table */
     for (int i = 0; i < SIZE; ++i) {
@@ -217,6 +220,8 @@ Cardanus_Key operator^(const Cardanus_Key& lhs, const Cardanus_Key& rhs) throw (
             key_res.m_grid[i][j] = lhs.m_grid[i][j] ^ rhs.m_grid[i][j];
         }
     }
+
+    return key_res;
 }
 
 Cardanus_Key operator|(const Cardanus_Key& lhs, const Cardanus_Key& rhs) throw (Matrix_Dimension_Err) {
@@ -231,6 +236,8 @@ Cardanus_Key operator|(const Cardanus_Key& lhs, const Cardanus_Key& rhs) throw (
             key_res.m_grid[i][j] = lhs.m_grid[i][j] | rhs.m_grid[i][j];
         }
     }
+
+    return key_res;
 }
 
 bool operator==(const Cardanus_Key& lhs, const Cardanus_Key& rhs) {

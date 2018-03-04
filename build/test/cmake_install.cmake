@@ -27,3 +27,9 @@ if(NOT CMAKE_INSTALL_COMPONENT)
   endif()
 endif()
 
+if(NOT CMAKE_INSTALL_LOCAL_ONLY)
+  # Include the install script for each subdirectory.
+  include("D:/TemporaryFiles/ИБ2/cs_lb2/build/test/googletest/cmake_install.cmake")
+
+endif()
+
