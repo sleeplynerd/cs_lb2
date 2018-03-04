@@ -1,7 +1,7 @@
 #ifndef ROTATION_SEQUENCE_H
 #define ROTATION_SEQUENCE_H
 
-#include <list>
+#include <list> 
 
 class Rotation_Sequence {
 public:
@@ -17,7 +17,7 @@ public:
     Dir                     next                ();
 							Rotation_Sequence   ();
                             Rotation_Sequence   (const Rotation_Sequence&);
-    Rotation_Sequence       operator=         (const Rotation_Sequence&);
+    Rotation_Sequence       operator=           (const Rotation_Sequence&);
 };
 
 #endif /* ROTATION_SEQUENCE_H */

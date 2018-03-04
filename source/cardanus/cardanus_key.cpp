@@ -197,6 +197,8 @@ string Cardanus_Key::to_string(bool is_numbered) const {
         }
         text.push_back(NEWLINE);
     }
+
+    return text;
 }
 
 /* ============================================================================= */

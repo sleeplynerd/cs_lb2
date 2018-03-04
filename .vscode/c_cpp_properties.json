@@ -45,18 +45,19 @@
         {
             "name": "Win32",
             "includePath": [
-                "C:/Program Files (x86)/Microsoft Visual Studio 11.0/VC/include",
-                "${workspaceRoot}",
-                "${workspaceRoot}/./dec_lib"
+                "${workspaceRoot}/source",
+                "${workspaceRoot}"
             ],
             "defines": [
                 "_DEBUG",
-                "UNICODE"
+                "UNICODE",
+                "_UNICODE"
             ],
             "intelliSenseMode": "msvc-x64",
             "browse": {
                 "path": [
-                    "${workspaceRoot}"
+                    "${workspaceRoot}",
+                    "C:/Program Files (x86)/"
                 ],
                 "limitSymbolsToIncludedHeaders": true,
                 "databaseFilename": ""

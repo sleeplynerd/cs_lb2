@@ -34,6 +34,7 @@ Decryptor Decryptor::operator=(const Decryptor& dec) {
     if (dec.mp_key != nullptr) {
         mp_key = new Cardanus_Key(*(dec.mp_key));
     }
+    return *this;
 }
 
 /* ============================================================================= */

@@ -1,0 +1,337 @@
+The system is: Windows - 6.1.7601 - AMD64
+Compiling the C compiler identification source file "CMakeCCompilerId.c" succeeded.
+Compiler:  
+Build flags: 
+Id flags: 
+
+The output was:
+0
+Microsoft (R) Build Engine версии 4.0.30319.18408
+[Microsoft .NET Framework версии 4.0.30319.18408]
+(C) Корпорация Майкрософт (Microsoft Corporation). Все права защищены.
+
+Построение начато 04.03.2018 18:58:03.
+Проект "D:\TemporaryFiles\ИБ2\cs_lb2\build\CMakeFiles\3.6.1\CompilerIdC\CompilerIdC.vcxproj" в узле 1 (целевые объекты по умолчанию).
+PrepareForBuild:
+  Создание каталога "Debug\".
+InitializeBuildStatus:
+  Создание "Debug\CompilerIdC.unsuccessfulbuild", так как было задано "AlwaysCreate".
+ClCompile:
+  C:\Program Files (x86)\Microsoft Visual Studio 11.0\VC\bin\CL.exe /c /nologo /W0 /WX- /Od /Oy- /D _MBCS /Gm- /EHsc /RTC1 /MDd /GS /fp:precise /Zc:wchar_t /Zc:forScope /Fo"Debug\\" /Fd"Debug\vc110.pdb" /Gd /TC /analyze- /errorReport:queue CMakeCCompilerId.c
+  CMakeCCompilerId.c
+Link:
+  C:\Program Files (x86)\Microsoft Visual Studio 11.0\VC\bin\link.exe /ERRORREPORT:QUEUE /OUT:".\CompilerIdC.exe" /INCREMENTAL:NO /NOLOGO kernel32.lib user32.lib gdi32.lib winspool.lib comdlg32.lib advapi32.lib shell32.lib ole32.lib oleaut32.lib uuid.lib odbc32.lib odbccp32.lib /MANIFEST /MANIFESTUAC:"level='asInvoker' uiAccess='false'" /manifest:embed /PDB:".\CompilerIdC.pdb" /SUBSYSTEM:CONSOLE /TLBID:1 /DYNAMICBASE /NXCOMPAT /IMPLIB:".\CompilerIdC.lib" /MACHINE:X86 /SAFESEH Debug\CMakeCCompilerId.obj
+  CompilerIdC.vcxproj -> D:\TemporaryFiles\ИБ2\cs_lb2\build\CMakeFiles\3.6.1\CompilerIdC\.\CompilerIdC.exe
+PostBuildEvent:
+  for %%i in (cl.exe) do @echo CMAKE_C_COMPILER=%%~$PATH:i
+  :VCEnd
+  CMAKE_C_COMPILER=C:\Program Files (x86)\Microsoft Visual Studio 11.0\VC\bin\cl.exe
+FinalizeBuildStatus:
+  Файл "Debug\CompilerIdC.unsuccessfulbuild" удаляется.
+  Обращение к "Debug\CompilerIdC.lastbuildstate".
+Построение проекта "D:\TemporaryFiles\ИБ2\cs_lb2\build\CMakeFiles\3.6.1\CompilerIdC\CompilerIdC.vcxproj" завершено (целевые объекты по умолчанию).
+
+Построение успешно завершено.
+    Предупреждений: 0
+    Ошибок: 0
+
+Затраченное время: 00:00:03.64
+
+
+Compilation of the C compiler identification source "CMakeCCompilerId.c" produced "CompilerIdC.exe"
+
+Compilation of the C compiler identification source "CMakeCCompilerId.c" produced "CompilerIdC.vcxproj"
+
+The C compiler identification is MSVC, found in "D:/TemporaryFiles/╨Ш╨С2/cs_lb2/build/CMakeFiles/3.6.1/CompilerIdC/CompilerIdC.exe"
+
+Compiling the CXX compiler identification source file "CMakeCXXCompilerId.cpp" succeeded.
+Compiler:  
+Build flags: 
+Id flags: 
+
+The output was:
+0
+Microsoft (R) Build Engine версии 4.0.30319.18408
+[Microsoft .NET Framework версии 4.0.30319.18408]
+(C) Корпорация Майкрософт (Microsoft Corporation). Все права защищены.
+
+Построение начато 04.03.2018 18:58:07.
+Проект "D:\TemporaryFiles\ИБ2\cs_lb2\build\CMakeFiles\3.6.1\CompilerIdCXX\CompilerIdCXX.vcxproj" в узле 1 (целевые объекты по умолчанию).
+PrepareForBuild:
+  Создание каталога "Debug\".
+InitializeBuildStatus:
+  Создание "Debug\CompilerIdCXX.unsuccessfulbuild", так как было задано "AlwaysCreate".
+ClCompile:
+  C:\Program Files (x86)\Microsoft Visual Studio 11.0\VC\bin\CL.exe /c /nologo /W0 /WX- /Od /Oy- /D _MBCS /Gm- /EHsc /RTC1 /MDd /GS /fp:precise /Zc:wchar_t /Zc:forScope /Fo"Debug\\" /Fd"Debug\vc110.pdb" /Gd /TP /analyze- /errorReport:queue CMakeCXXCompilerId.cpp
+  CMakeCXXCompilerId.cpp
+Link:
+  C:\Program Files (x86)\Microsoft Visual Studio 11.0\VC\bin\link.exe /ERRORREPORT:QUEUE /OUT:".\CompilerIdCXX.exe" /INCREMENTAL:NO /NOLOGO kernel32.lib user32.lib gdi32.lib winspool.lib comdlg32.lib advapi32.lib shell32.lib ole32.lib oleaut32.lib uuid.lib odbc32.lib odbccp32.lib /MANIFEST /MANIFESTUAC:"level='asInvoker' uiAccess='false'" /manifest:embed /PDB:".\CompilerIdCXX.pdb" /SUBSYSTEM:CONSOLE /TLBID:1 /DYNAMICBASE /NXCOMPAT /IMPLIB:".\CompilerIdCXX.lib" /MACHINE:X86 /SAFESEH Debug\CMakeCXXCompilerId.obj
+  CompilerIdCXX.vcxproj -> D:\TemporaryFiles\ИБ2\cs_lb2\build\CMakeFiles\3.6.1\CompilerIdCXX\.\CompilerIdCXX.exe
+PostBuildEvent:
+  for %%i in (cl.exe) do @echo CMAKE_CXX_COMPILER=%%~$PATH:i
+  :VCEnd
+  CMAKE_CXX_COMPILER=C:\Program Files (x86)\Microsoft Visual Studio 11.0\VC\bin\cl.exe
+FinalizeBuildStatus:
+  Файл "Debug\CompilerIdCXX.unsuccessfulbuild" удаляется.
+  Обращение к "Debug\CompilerIdCXX.lastbuildstate".
+Построение проекта "D:\TemporaryFiles\ИБ2\cs_lb2\build\CMakeFiles\3.6.1\CompilerIdCXX\CompilerIdCXX.vcxproj" завершено (целевые объекты по умолчанию).
+
+Построение успешно завершено.
+    Предупреждений: 0
+    Ошибок: 0
+
+Затраченное время: 00:00:00.68
+
+
+Compilation of the CXX compiler identification source "CMakeCXXCompilerId.cpp" produced "CompilerIdCXX.exe"
+
+Compilation of the CXX compiler identification source "CMakeCXXCompilerId.cpp" produced "CompilerIdCXX.vcxproj"
+
+The CXX compiler identification is MSVC, found in "D:/TemporaryFiles/╨Ш╨С2/cs_lb2/build/CMakeFiles/3.6.1/CompilerIdCXX/CompilerIdCXX.exe"
+
+Determining if the C compiler works passed with the following output:
+Change Dir: D:/TemporaryFiles/╨Ш╨С2/cs_lb2/build/CMakeFiles/CMakeTmp
+
+Run Build Command:"C:/Windows/Microsoft.NET/Framework/v4.0.30319/MSBuild.exe" "cmTC_1f7bc.vcxproj" "/p:Configuration=Debug" "/p:VisualStudioVersion=11.0"
+Microsoft (R) Build Engine версии 4.0.30319.18408
+[Microsoft .NET Framework версии 4.0.30319.18408]
+(C) Корпорация Майкрософт (Microsoft Corporation). Все права защищены.
+
+Построение начато 04.03.2018 18:58:08.
+Проект "D:\TemporaryFiles\ИБ2\cs_lb2\build\CMakeFiles\CMakeTmp\cmTC_1f7bc.vcxproj" в узле 1 (целевые объекты по умолчанию).
+PrepareForBuild:
+  Создание каталога "cmTC_1f7bc.dir\Debug\".
+  Создание каталога "D:\TemporaryFiles\ИБ2\cs_lb2\build\CMakeFiles\CMakeTmp\Debug\".
+InitializeBuildStatus:
+  Создание "cmTC_1f7bc.dir\Debug\cmTC_1f7bc.unsuccessfulbuild", так как было задано "AlwaysCreate".
+ClCompile:
+  C:\Program Files (x86)\Microsoft Visual Studio 11.0\VC\bin\CL.exe /c /Zi /W3 /WX- /Od /Ob0 /Oy- /D WIN32 /D _WINDOWS /D _DEBUG /D "CMAKE_INTDIR=\"Debug\"" /D _MBCS /Gm- /RTC1 /MDd /GS /fp:precise /Zc:wchar_t /Zc:forScope /Fo"cmTC_1f7bc.dir\Debug\\" /Fd"cmTC_1f7bc.dir\Debug\vc110.pdb" /Gd /TC /analyze- /errorReport:queue "D:\TemporaryFiles\ИБ2\cs_lb2\build\CMakeFiles\CMakeTmp\testCCompiler.c"
+  Оптимизирующий компилятор Microsoft (R) C/C++ версии 17.00.50727.1 для x86
+  (C) Корпорация Майкрософт (Microsoft Corporation). Все права защищены.
+  
+  cl /c /Zi /W3 /WX- /Od /Ob0 /Oy- /D WIN32 /D _WINDOWS /D _DEBUG /D "CMAKE_INTDIR=\"Debug\"" /D _MBCS /Gm- /RTC1 /MDd /GS /fp:precise /Zc:wchar_t /Zc:forScope /Fo"cmTC_1f7bc.dir\Debug\\" /Fd"cmTC_1f7bc.dir\Debug\vc110.pdb" /Gd /TC /analyze- /errorReport:queue "D:\TemporaryFiles\ИБ2\cs_lb2\build\CMakeFiles\CMakeTmp\testCCompiler.c"
+  
+  testCCompiler.c
+Link:
+  C:\Program Files (x86)\Microsoft Visual Studio 11.0\VC\bin\link.exe /ERRORREPORT:QUEUE /OUT:"D:\TemporaryFiles\ИБ2\cs_lb2\build\CMakeFiles\CMakeTmp\Debug\cmTC_1f7bc.exe" /INCREMENTAL /NOLOGO kernel32.lib user32.lib gdi32.lib winspool.lib shell32.lib ole32.lib oleaut32.lib uuid.lib comdlg32.lib advapi32.lib /MANIFEST /MANIFESTUAC:"level='asInvoker' uiAccess='false'" /manifest:embed /DEBUG /PDB:"D:/TemporaryFiles/ИБ2/cs_lb2/build/CMakeFiles/CMakeTmp/Debug/cmTC_1f7bc.pdb" /SUBSYSTEM:CONSOLE /TLBID:1 /DYNAMICBASE /NXCOMPAT /IMPLIB:"D:/TemporaryFiles/ИБ2/cs_lb2/build/CMakeFiles/CMakeTmp/Debug/cmTC_1f7bc.lib" /MACHINE:X86 /SAFESEH  /machine:X86 cmTC_1f7bc.dir\Debug\testCCompiler.obj
+  cmTC_1f7bc.vcxproj -> D:\TemporaryFiles\ИБ2\cs_lb2\build\CMakeFiles\CMakeTmp\Debug\cmTC_1f7bc.exe
+FinalizeBuildStatus:
+  Файл "cmTC_1f7bc.dir\Debug\cmTC_1f7bc.unsuccessfulbuild" удаляется.
+  Обращение к "cmTC_1f7bc.dir\Debug\cmTC_1f7bc.lastbuildstate".
+Построение проекта "D:\TemporaryFiles\ИБ2\cs_lb2\build\CMakeFiles\CMakeTmp\cmTC_1f7bc.vcxproj" завершено (целевые объекты по умолчанию).
+
+Построение успешно завершено.
+    Предупреждений: 0
+    Ошибок: 0
+
+Затраченное время: 00:00:01.21
+
+
+Detecting C compiler ABI info compiled with the following output:
+Change Dir: D:/TemporaryFiles/╨Ш╨С2/cs_lb2/build/CMakeFiles/CMakeTmp
+
+Run Build Command:"C:/Windows/Microsoft.NET/Framework/v4.0.30319/MSBuild.exe" "cmTC_04b7b.vcxproj" "/p:Configuration=Debug" "/p:VisualStudioVersion=11.0"
+Microsoft (R) Build Engine версии 4.0.30319.18408
+[Microsoft .NET Framework версии 4.0.30319.18408]
+(C) Корпорация Майкрософт (Microsoft Corporation). Все права защищены.
+
+Построение начато 04.03.2018 18:58:10.
+Проект "D:\TemporaryFiles\ИБ2\cs_lb2\build\CMakeFiles\CMakeTmp\cmTC_04b7b.vcxproj" в узле 1 (целевые объекты по умолчанию).
+PrepareForBuild:
+  Создание каталога "cmTC_04b7b.dir\Debug\".
+  Создание каталога "D:\TemporaryFiles\ИБ2\cs_lb2\build\CMakeFiles\CMakeTmp\Debug\".
+InitializeBuildStatus:
+  Создание "cmTC_04b7b.dir\Debug\cmTC_04b7b.unsuccessfulbuild", так как было задано "AlwaysCreate".
+ClCompile:
+  C:\Program Files (x86)\Microsoft Visual Studio 11.0\VC\bin\CL.exe /c /Zi /W3 /WX- /Od /Ob0 /Oy- /D WIN32 /D _WINDOWS /D _DEBUG /D "CMAKE_INTDIR=\"Debug\"" /D _MBCS /Gm- /RTC1 /MDd /GS /fp:precise /Zc:wchar_t /Zc:forScope /Fo"cmTC_04b7b.dir\Debug\\" /Fd"cmTC_04b7b.dir\Debug\vc110.pdb" /Gd /TC /analyze- /errorReport:queue "C:\Program Files\CMake\share\cmake-3.6\Modules\CMakeCCompilerABI.c"
+  Оптимизирующий компилятор Microsoft (R) C/C++ версии 17.00.50727.1 для x86
+  (C) Корпорация Майкрософт (Microsoft Corporation). Все права защищены.
+  
+  cl /c /Zi /W3 /WX- /Od /Ob0 /Oy- /D WIN32 /D _WINDOWS /D _DEBUG /D "CMAKE_INTDIR=\"Debug\"" /D _MBCS /Gm- /RTC1 /MDd /GS /fp:precise /Zc:wchar_t /Zc:forScope /Fo"cmTC_04b7b.dir\Debug\\" /Fd"cmTC_04b7b.dir\Debug\vc110.pdb" /Gd /TC /analyze- /errorReport:queue "C:\Program Files\CMake\share\cmake-3.6\Modules\CMakeCCompilerABI.c"
+  
+  CMakeCCompilerABI.c
+Link:
+  C:\Program Files (x86)\Microsoft Visual Studio 11.0\VC\bin\link.exe /ERRORREPORT:QUEUE /OUT:"D:\TemporaryFiles\ИБ2\cs_lb2\build\CMakeFiles\CMakeTmp\Debug\cmTC_04b7b.exe" /INCREMENTAL /NOLOGO kernel32.lib user32.lib gdi32.lib winspool.lib shell32.lib ole32.lib oleaut32.lib uuid.lib comdlg32.lib advapi32.lib /MANIFEST /MANIFESTUAC:"level='asInvoker' uiAccess='false'" /manifest:embed /DEBUG /PDB:"D:/TemporaryFiles/ИБ2/cs_lb2/build/CMakeFiles/CMakeTmp/Debug/cmTC_04b7b.pdb" /SUBSYSTEM:CONSOLE /TLBID:1 /DYNAMICBASE /NXCOMPAT /IMPLIB:"D:/TemporaryFiles/ИБ2/cs_lb2/build/CMakeFiles/CMakeTmp/Debug/cmTC_04b7b.lib" /MACHINE:X86 /SAFESEH  /machine:X86 cmTC_04b7b.dir\Debug\CMakeCCompilerABI.obj
+  cmTC_04b7b.vcxproj -> D:\TemporaryFiles\ИБ2\cs_lb2\build\CMakeFiles\CMakeTmp\Debug\cmTC_04b7b.exe
+FinalizeBuildStatus:
+  Файл "cmTC_04b7b.dir\Debug\cmTC_04b7b.unsuccessfulbuild" удаляется.
+  Обращение к "cmTC_04b7b.dir\Debug\cmTC_04b7b.lastbuildstate".
+Построение проекта "D:\TemporaryFiles\ИБ2\cs_lb2\build\CMakeFiles\CMakeTmp\cmTC_04b7b.vcxproj" завершено (целевые объекты по умолчанию).
+
+Построение успешно завершено.
+    Предупреждений: 0
+    Ошибок: 0
+
+Затраченное время: 00:00:00.44
+
+
+Determining if the CXX compiler works passed with the following output:
+Change Dir: D:/TemporaryFiles/╨Ш╨С2/cs_lb2/build/CMakeFiles/CMakeTmp
+
+Run Build Command:"C:/Windows/Microsoft.NET/Framework/v4.0.30319/MSBuild.exe" "cmTC_7b491.vcxproj" "/p:Configuration=Debug" "/p:VisualStudioVersion=11.0"
+Microsoft (R) Build Engine версии 4.0.30319.18408
+[Microsoft .NET Framework версии 4.0.30319.18408]
+(C) Корпорация Майкрософт (Microsoft Corporation). Все права защищены.
+
+Построение начато 04.03.2018 18:58:11.
+Проект "D:\TemporaryFiles\ИБ2\cs_lb2\build\CMakeFiles\CMakeTmp\cmTC_7b491.vcxproj" в узле 1 (целевые объекты по умолчанию).
+PrepareForBuild:
+  Создание каталога "cmTC_7b491.dir\Debug\".
+  Создание каталога "D:\TemporaryFiles\ИБ2\cs_lb2\build\CMakeFiles\CMakeTmp\Debug\".
+InitializeBuildStatus:
+  Создание "cmTC_7b491.dir\Debug\cmTC_7b491.unsuccessfulbuild", так как было задано "AlwaysCreate".
+ClCompile:
+  C:\Program Files (x86)\Microsoft Visual Studio 11.0\VC\bin\CL.exe /c /Zi /W3 /WX- /Od /Ob0 /Oy- /D WIN32 /D _WINDOWS /D _DEBUG /D "CMAKE_INTDIR=\"Debug\"" /D _MBCS /Gm- /EHsc /RTC1 /MDd /GS /fp:precise /Zc:wchar_t /Zc:forScope /GR /Fo"cmTC_7b491.dir\Debug\\" /Fd"cmTC_7b491.dir\Debug\vc110.pdb" /Gd /TP /analyze- /errorReport:queue "D:\TemporaryFiles\ИБ2\cs_lb2\build\CMakeFiles\CMakeTmp\testCXXCompiler.cxx"
+  Оптимизирующий компилятор Microsoft (R) C/C++ версии 17.00.50727.1 для x86
+  (C) Корпорация Майкрософт (Microsoft Corporation). Все права защищены.
+  
+  cl /c /Zi /W3 /WX- /Od /Ob0 /Oy- /D WIN32 /D _WINDOWS /D _DEBUG /D "CMAKE_INTDIR=\"Debug\"" /D _MBCS /Gm- /EHsc /RTC1 /MDd /GS /fp:precise /Zc:wchar_t /Zc:forScope /GR /Fo"cmTC_7b491.dir\Debug\\" /Fd"cmTC_7b491.dir\Debug\vc110.pdb" /Gd /TP /analyze- /errorReport:queue "D:\TemporaryFiles\ИБ2\cs_lb2\build\CMakeFiles\CMakeTmp\testCXXCompiler.cxx"
+  
+  testCXXCompiler.cxx
+Link:
+  C:\Program Files (x86)\Microsoft Visual Studio 11.0\VC\bin\link.exe /ERRORREPORT:QUEUE /OUT:"D:\TemporaryFiles\ИБ2\cs_lb2\build\CMakeFiles\CMakeTmp\Debug\cmTC_7b491.exe" /INCREMENTAL /NOLOGO kernel32.lib user32.lib gdi32.lib winspool.lib shell32.lib ole32.lib oleaut32.lib uuid.lib comdlg32.lib advapi32.lib /MANIFEST /MANIFESTUAC:"level='asInvoker' uiAccess='false'" /manifest:embed /DEBUG /PDB:"D:/TemporaryFiles/ИБ2/cs_lb2/build/CMakeFiles/CMakeTmp/Debug/cmTC_7b491.pdb" /SUBSYSTEM:CONSOLE /TLBID:1 /DYNAMICBASE /NXCOMPAT /IMPLIB:"D:/TemporaryFiles/ИБ2/cs_lb2/build/CMakeFiles/CMakeTmp/Debug/cmTC_7b491.lib" /MACHINE:X86 /SAFESEH  /machine:X86 cmTC_7b491.dir\Debug\testCXXCompiler.obj
+  cmTC_7b491.vcxproj -> D:\TemporaryFiles\ИБ2\cs_lb2\build\CMakeFiles\CMakeTmp\Debug\cmTC_7b491.exe
+FinalizeBuildStatus:
+  Файл "cmTC_7b491.dir\Debug\cmTC_7b491.unsuccessfulbuild" удаляется.
+  Обращение к "cmTC_7b491.dir\Debug\cmTC_7b491.lastbuildstate".
+Построение проекта "D:\TemporaryFiles\ИБ2\cs_lb2\build\CMakeFiles\CMakeTmp\cmTC_7b491.vcxproj" завершено (целевые объекты по умолчанию).
+
+Построение успешно завершено.
+    Предупреждений: 0
+    Ошибок: 0
+
+Затраченное время: 00:00:00.51
+
+
+Detecting CXX compiler ABI info compiled with the following output:
+Change Dir: D:/TemporaryFiles/╨Ш╨С2/cs_lb2/build/CMakeFiles/CMakeTmp
+
+Run Build Command:"C:/Windows/Microsoft.NET/Framework/v4.0.30319/MSBuild.exe" "cmTC_1464d.vcxproj" "/p:Configuration=Debug" "/p:VisualStudioVersion=11.0"
+Microsoft (R) Build Engine версии 4.0.30319.18408
+[Microsoft .NET Framework версии 4.0.30319.18408]
+(C) Корпорация Майкрософт (Microsoft Corporation). Все права защищены.
+
+Построение начато 04.03.2018 18:58:11.
+Проект "D:\TemporaryFiles\ИБ2\cs_lb2\build\CMakeFiles\CMakeTmp\cmTC_1464d.vcxproj" в узле 1 (целевые объекты по умолчанию).
+PrepareForBuild:
+  Создание каталога "cmTC_1464d.dir\Debug\".
+  Создание каталога "D:\TemporaryFiles\ИБ2\cs_lb2\build\CMakeFiles\CMakeTmp\Debug\".
+InitializeBuildStatus:
+  Создание "cmTC_1464d.dir\Debug\cmTC_1464d.unsuccessfulbuild", так как было задано "AlwaysCreate".
+ClCompile:
+  C:\Program Files (x86)\Microsoft Visual Studio 11.0\VC\bin\CL.exe /c /Zi /W3 /WX- /Od /Ob0 /Oy- /D WIN32 /D _WINDOWS /D _DEBUG /D "CMAKE_INTDIR=\"Debug\"" /D _MBCS /Gm- /EHsc /RTC1 /MDd /GS /fp:precise /Zc:wchar_t /Zc:forScope /GR /Fo"cmTC_1464d.dir\Debug\\" /Fd"cmTC_1464d.dir\Debug\vc110.pdb" /Gd /TP /analyze- /errorReport:queue "C:\Program Files\CMake\share\cmake-3.6\Modules\CMakeCXXCompilerABI.cpp"
+  Оптимизирующий компилятор Microsoft (R) C/C++ версии 17.00.50727.1 для x86
+  (C) Корпорация Майкрософт (Microsoft Corporation). Все права защищены.
+  
+  cl /c /Zi /W3 /WX- /Od /Ob0 /Oy- /D WIN32 /D _WINDOWS /D _DEBUG /D "CMAKE_INTDIR=\"Debug\"" /D _MBCS /Gm- /EHsc /RTC1 /MDd /GS /fp:precise /Zc:wchar_t /Zc:forScope /GR /Fo"cmTC_1464d.dir\Debug\\" /Fd"cmTC_1464d.dir\Debug\vc110.pdb" /Gd /TP /analyze- /errorReport:queue "C:\Program Files\CMake\share\cmake-3.6\Modules\CMakeCXXCompilerABI.cpp"
+  
+  CMakeCXXCompilerABI.cpp
+Link:
+  C:\Program Files (x86)\Microsoft Visual Studio 11.0\VC\bin\link.exe /ERRORREPORT:QUEUE /OUT:"D:\TemporaryFiles\ИБ2\cs_lb2\build\CMakeFiles\CMakeTmp\Debug\cmTC_1464d.exe" /INCREMENTAL /NOLOGO kernel32.lib user32.lib gdi32.lib winspool.lib shell32.lib ole32.lib oleaut32.lib uuid.lib comdlg32.lib advapi32.lib /MANIFEST /MANIFESTUAC:"level='asInvoker' uiAccess='false'" /manifest:embed /DEBUG /PDB:"D:/TemporaryFiles/ИБ2/cs_lb2/build/CMakeFiles/CMakeTmp/Debug/cmTC_1464d.pdb" /SUBSYSTEM:CONSOLE /TLBID:1 /DYNAMICBASE /NXCOMPAT /IMPLIB:"D:/TemporaryFiles/ИБ2/cs_lb2/build/CMakeFiles/CMakeTmp/Debug/cmTC_1464d.lib" /MACHINE:X86 /SAFESEH  /machine:X86 cmTC_1464d.dir\Debug\CMakeCXXCompilerABI.obj
+  cmTC_1464d.vcxproj -> D:\TemporaryFiles\ИБ2\cs_lb2\build\CMakeFiles\CMakeTmp\Debug\cmTC_1464d.exe
+FinalizeBuildStatus:
+  Файл "cmTC_1464d.dir\Debug\cmTC_1464d.unsuccessfulbuild" удаляется.
+  Обращение к "cmTC_1464d.dir\Debug\cmTC_1464d.lastbuildstate".
+Построение проекта "D:\TemporaryFiles\ИБ2\cs_lb2\build\CMakeFiles\CMakeTmp\cmTC_1464d.vcxproj" завершено (целевые объекты по умолчанию).
+
+Построение успешно завершено.
+    Предупреждений: 0
+    Ошибок: 0
+
+Затраченное время: 00:00:00.59
+
+
+
+
+Detecting CXX [] compiler features compiled with the following output:
+Change Dir: D:/TemporaryFiles/╨Ш╨С2/cs_lb2/build/CMakeFiles/CMakeTmp
+
+Run Build Command:"C:/Windows/Microsoft.NET/Framework/v4.0.30319/MSBuild.exe" "cmTC_6cdac.vcxproj" "/p:Configuration=Debug" "/p:VisualStudioVersion=11.0"
+Microsoft (R) Build Engine версии 4.0.30319.18408
+[Microsoft .NET Framework версии 4.0.30319.18408]
+(C) Корпорация Майкрософт (Microsoft Corporation). Все права защищены.
+
+Построение начато 04.03.2018 18:58:13.
+Проект "D:\TemporaryFiles\ИБ2\cs_lb2\build\CMakeFiles\CMakeTmp\cmTC_6cdac.vcxproj" в узле 1 (целевые объекты по умолчанию).
+PrepareForBuild:
+  Создание каталога "cmTC_6cdac.dir\Debug\".
+  Создание каталога "D:\TemporaryFiles\ИБ2\cs_lb2\build\CMakeFiles\CMakeTmp\Debug\".
+InitializeBuildStatus:
+  Создание "cmTC_6cdac.dir\Debug\cmTC_6cdac.unsuccessfulbuild", так как было задано "AlwaysCreate".
+ClCompile:
+  C:\Program Files (x86)\Microsoft Visual Studio 11.0\VC\bin\CL.exe /c /Zi /W3 /WX- /Od /Ob0 /Oy- /D WIN32 /D _WINDOWS /D _DEBUG /D "CMAKE_INTDIR=\"Debug\"" /D _MBCS /Gm- /EHsc /RTC1 /MDd /GS /fp:precise /Zc:wchar_t /Zc:forScope /GR /Fo"cmTC_6cdac.dir\Debug\\" /Fd"cmTC_6cdac.dir\Debug\vc110.pdb" /Gd /TP /analyze- /errorReport:queue "D:\TemporaryFiles\ИБ2\cs_lb2\build\CMakeFiles\feature_tests.cxx"
+  Оптимизирующий компилятор Microsoft (R) C/C++ версии 17.00.50727.1 для x86
+  (C) Корпорация Майкрософт (Microsoft Corporation). Все права защищены.
+  
+  cl /c /Zi /W3 /WX- /Od /Ob0 /Oy- /D WIN32 /D _WINDOWS /D _DEBUG /D "CMAKE_INTDIR=\"Debug\"" /D _MBCS /Gm- /EHsc /RTC1 /MDd /GS /fp:precise /Zc:wchar_t /Zc:forScope /GR /Fo"cmTC_6cdac.dir\Debug\\" /Fd"cmTC_6cdac.dir\Debug\vc110.pdb" /Gd /TP /analyze- /errorReport:queue "D:\TemporaryFiles\ИБ2\cs_lb2\build\CMakeFiles\feature_tests.cxx"
+  feature_tests.cxx
+  
+Link:
+  C:\Program Files (x86)\Microsoft Visual Studio 11.0\VC\bin\link.exe /ERRORREPORT:QUEUE /OUT:"D:\TemporaryFiles\ИБ2\cs_lb2\build\CMakeFiles\CMakeTmp\Debug\cmTC_6cdac.exe" /INCREMENTAL /NOLOGO kernel32.lib user32.lib gdi32.lib winspool.lib shell32.lib ole32.lib oleaut32.lib uuid.lib comdlg32.lib advapi32.lib /MANIFEST /MANIFESTUAC:"level='asInvoker' uiAccess='false'" /manifest:embed /DEBUG /PDB:"D:/TemporaryFiles/ИБ2/cs_lb2/build/CMakeFiles/CMakeTmp/Debug/cmTC_6cdac.pdb" /SUBSYSTEM:CONSOLE /TLBID:1 /DYNAMICBASE /NXCOMPAT /IMPLIB:"D:/TemporaryFiles/ИБ2/cs_lb2/build/CMakeFiles/CMakeTmp/Debug/cmTC_6cdac.lib" /MACHINE:X86 /SAFESEH  /machine:X86 cmTC_6cdac.dir\Debug\feature_tests.obj
+  cmTC_6cdac.vcxproj -> D:\TemporaryFiles\ИБ2\cs_lb2\build\CMakeFiles\CMakeTmp\Debug\cmTC_6cdac.exe
+FinalizeBuildStatus:
+  Файл "cmTC_6cdac.dir\Debug\cmTC_6cdac.unsuccessfulbuild" удаляется.
+  Обращение к "cmTC_6cdac.dir\Debug\cmTC_6cdac.lastbuildstate".
+Построение проекта "D:\TemporaryFiles\ИБ2\cs_lb2\build\CMakeFiles\CMakeTmp\cmTC_6cdac.vcxproj" завершено (целевые объекты по умолчанию).
+
+Построение успешно завершено.
+    Предупреждений: 0
+    Ошибок: 0
+
+Затраченное время: 00:00:00.36
+
+
+    Feature record: CXX_FEATURE:0cxx_alias_templates
+    Feature record: CXX_FEATURE:0cxx_alignas
+    Feature record: CXX_FEATURE:0cxx_alignof
+    Feature record: CXX_FEATURE:0cxx_attributes
+    Feature record: CXX_FEATURE:0cxx_attribute_deprecated
+    Feature record: CXX_FEATURE:1cxx_auto_type
+    Feature record: CXX_FEATURE:0cxx_binary_literals
+    Feature record: CXX_FEATURE:0cxx_constexpr
+    Feature record: CXX_FEATURE:0cxx_contextual_conversions
+    Feature record: CXX_FEATURE:1cxx_decltype
+    Feature record: CXX_FEATURE:0cxx_decltype_auto
+    Feature record: CXX_FEATURE:0cxx_default_function_template_args
+    Feature record: CXX_FEATURE:0cxx_defaulted_functions
+    Feature record: CXX_FEATURE:0cxx_defaulted_move_initializers
+    Feature record: CXX_FEATURE:0cxx_delegating_constructors
+    Feature record: CXX_FEATURE:0cxx_deleted_functions
+    Feature record: CXX_FEATURE:0cxx_digit_separators
+    Feature record: CXX_FEATURE:1cxx_enum_forward_declarations
+    Feature record: CXX_FEATURE:0cxx_explicit_conversions
+    Feature record: CXX_FEATURE:1cxx_extended_friend_declarations
+    Feature record: CXX_FEATURE:1cxx_extern_templates
+    Feature record: CXX_FEATURE:1cxx_final
+    Feature record: CXX_FEATURE:0cxx_func_identifier
+    Feature record: CXX_FEATURE:0cxx_generalized_initializers
+    Feature record: CXX_FEATURE:0cxx_generic_lambdas
+    Feature record: CXX_FEATURE:0cxx_inheriting_constructors
+    Feature record: CXX_FEATURE:0cxx_inline_namespaces
+    Feature record: CXX_FEATURE:1cxx_lambdas
+    Feature record: CXX_FEATURE:0cxx_lambda_init_captures
+    Feature record: CXX_FEATURE:1cxx_local_type_template_args
+    Feature record: CXX_FEATURE:1cxx_long_long_type
+    Feature record: CXX_FEATURE:0cxx_noexcept
+    Feature record: CXX_FEATURE:0cxx_nonstatic_member_init
+    Feature record: CXX_FEATURE:1cxx_nullptr
+    Feature record: CXX_FEATURE:1cxx_override
+    Feature record: CXX_FEATURE:1cxx_range_for
+    Feature record: CXX_FEATURE:0cxx_raw_string_literals
+    Feature record: CXX_FEATURE:0cxx_reference_qualified_functions
+    Feature record: CXX_FEATURE:0cxx_return_type_deduction
+    Feature record: CXX_FEATURE:1cxx_right_angle_brackets
+    Feature record: CXX_FEATURE:1cxx_rvalue_references
+    Feature record: CXX_FEATURE:0cxx_sizeof_member
+    Feature record: CXX_FEATURE:1cxx_static_assert
+    Feature record: CXX_FEATURE:1cxx_strong_enums
+    Feature record: CXX_FEATURE:1cxx_template_template_parameters
+    Feature record: CXX_FEATURE:0cxx_thread_local
+    Feature record: CXX_FEATURE:1cxx_trailing_return_types
+    Feature record: CXX_FEATURE:0cxx_unicode_literals
+    Feature record: CXX_FEATURE:0cxx_uniform_initialization
+    Feature record: CXX_FEATURE:0cxx_unrestricted_unions
+    Feature record: CXX_FEATURE:0cxx_user_literals
+    Feature record: CXX_FEATURE:0cxx_variable_templates
+    Feature record: CXX_FEATURE:1cxx_variadic_macros
+    Feature record: CXX_FEATURE:0cxx_variadic_templates

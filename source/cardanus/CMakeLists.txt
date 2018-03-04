@@ -1,0 +1,12 @@
+project(cardanus)
+add_library(cardanus
+    cardanus_grid.cpp
+    cardanus_grid.h
+    cardanus_key.cpp
+    cardanus_key.h
+    CMakeLists.txt
+    decryptor.cpp
+    decryptor.h
+    errors.hpp
+    rotation_sequence.cpp
+    rotation_sequence.h)
