@@ -1,1 +1,0 @@
-.\build\test\Debug\test_cardanus.exe
