@@ -77,6 +77,10 @@ string Decryptor::decr(Cardanus_Grid grid,
 /* ================================ Public methods ============================= */
 /* ============================================================================= */
 
+string Decryptor::decrypt(const Cipher_Set& ciphset) {
+    return decr(ciphset.grid, ciphset.key, ciphset.sequence);
+}
+
 string Decryptor::decrypt(const Cardanus_Grid& grid, 
                           const Cardanus_Key& key,
                           const Rotation_Sequence& seq) const 

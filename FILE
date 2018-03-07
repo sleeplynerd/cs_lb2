@@ -1,0 +1,113 @@
+
+d:\TemporaryFiles\ˆ2\cs_lb2>.\build\test\Debug\test_cardanus.exe
+Running main() from gtest_main.cc
+[==========] Running 29 tests from 5 test cases.
+[----------] Global test environment set-up.
+[----------] 4 tests from Cardanus_Grid
+[ RUN      ] Cardanus_Grid.set_at
+[       OK ] Cardanus_Grid.set_at (0 ms)
+[ RUN      ] Cardanus_Grid.get_at
+[       OK ] Cardanus_Grid.get_at (0 ms)
+[ RUN      ] Cardanus_Grid.get_size
+[       OK ] Cardanus_Grid.get_size (0 ms)
+[ RUN      ] Cardanus_Grid.to_string
+  0 1 2 
+0 a b c 
+1 d e f 
+2 g h i 
+
+[       OK ] Cardanus_Grid.to_string (0 ms)
+[----------] 4 tests from Cardanus_Grid (1 ms total)
+
+[----------] 17 tests from Cardanus_Key
+[ RUN      ] Cardanus_Key.CONSTRUCTOR_INT
+[       OK ] Cardanus_Key.CONSTRUCTOR_INT (0 ms)
+[ RUN      ] Cardanus_Key.COPY_CONSTRUCTOR
+[       OK ] Cardanus_Key.COPY_CONSTRUCTOR (0 ms)
+[ RUN      ] Cardanus_Key.OPERATOR_ASSIGN
+[       OK ] Cardanus_Key.OPERATOR_ASSIGN (0 ms)
+[ RUN      ] Cardanus_Key.OPERATOR_XOR
+[       OK ] Cardanus_Key.OPERATOR_XOR (0 ms)
+[ RUN      ] Cardanus_Key.OPERATOR_OR
+[       OK ] Cardanus_Key.OPERATOR_OR (0 ms)
+[ RUN      ] Cardanus_Key.OPERATOR_EQUAL
+[       OK ] Cardanus_Key.OPERATOR_EQUAL (0 ms)
+[ RUN      ] Cardanus_Key.rotate
+[       OK ] Cardanus_Key.rotate (0 ms)
+[ RUN      ] Cardanus_Key.rotate_ccw
+[       OK ] Cardanus_Key.rotate_ccw (0 ms)
+[ RUN      ] Cardanus_Key.rotate_cw
+[       OK ] Cardanus_Key.rotate_cw (0 ms)
+[ RUN      ] Cardanus_Key.rotate_origin
+[       OK ] Cardanus_Key.rotate_origin (0 ms)
+[ RUN      ] Cardanus_Key.open_at
+[       OK ] Cardanus_Key.open_at (0 ms)
+[ RUN      ] Cardanus_Key.close_at
+[       OK ] Cardanus_Key.close_at (0 ms)
+[ RUN      ] Cardanus_Key.close_all
+[       OK ] Cardanus_Key.close_all (0 ms)
+[ RUN      ] Cardanus_Key.get_size
+[       OK ] Cardanus_Key.get_size (0 ms)
+[ RUN      ] Cardanus_Key.is_opened
+[       OK ] Cardanus_Key.is_opened (0 ms)
+[ RUN      ] Cardanus_Key.is_valid
+[       OK ] Cardanus_Key.is_valid (0 ms)
+[ RUN      ] Cardanus_Key.to_string
+
+  0 1 2 
+0 O - O 
+1 O O O 
+2 - - - 
+
+[       OK ] Cardanus_Key.to_string (0 ms)
+[----------] 17 tests from Cardanus_Key (1 ms total)
+
+[----------] 3 tests from Decryptor
+[ RUN      ] Decryptor.decrypt_GRID_KEY_SEQUENCE
+[       OK ] Decryptor.decrypt_GRID_KEY_SEQUENCE (0 ms)
+[ RUN      ] Decryptor.decrypt_KEY_SEQUENCE
+[       OK ] Decryptor.decrypt_KEY_SEQUENCE (0 ms)
+[ RUN      ] Decryptor.decrypt_SEQUENCE
+[       OK ] Decryptor.decrypt_SEQUENCE (0 ms)
+[----------] 3 tests from Decryptor (1 ms total)
+
+[----------] 1 test from Encryptor
+[ RUN      ] Encryptor.encrypt
+
+
+n a t n a d t 
+i h e o y n e 
+t * h i r * e 
+e r f * * f * 
+i r * o n a d 
+i n g t o t i 
+m n * e c i * 
+
+
+- - - - - O - 
+- - - - O - O 
+O - O - - - O 
+- - - - - O - 
+- - - O - - - 
+- - - - O O - 
+O - - O - - - 
+
+
+dyethefootmenarefranticintheirindignation*******
+[       OK ] Encryptor.encrypt (1 ms)
+[----------] 1 test from Encryptor (1 ms total)
+
+[----------] 4 tests from Rotation_Sequence
+[ RUN      ] Rotation_Sequence.cw__ccw__next
+[       OK ] Rotation_Sequence.cw__ccw__next (0 ms)
+[ RUN      ] Rotation_Sequence.clear
+[       OK ] Rotation_Sequence.clear (0 ms)
+[ RUN      ] Rotation_Sequence.reset
+[       OK ] Rotation_Sequence.reset (0 ms)
+[ RUN      ] Rotation_Sequence.OPERATOR_ASSIGN
+[       OK ] Rotation_Sequence.OPERATOR_ASSIGN (0 ms)
+[----------] 4 tests from Rotation_Sequence (0 ms total)
+
+[----------] Global test environment tear-down
+[==========] 29 tests from 5 test cases ran. (4 ms total)
+[  PASSED  ] 29 tests.

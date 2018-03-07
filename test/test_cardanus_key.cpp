@@ -174,6 +174,26 @@ TEST(Cardanus_Key, is_opened) {
     EXPECT_FALSE(key.is_opened(0,0));
 }
 
+TEST(Cardanus_Key, is_valid) {
+    Cardanus_Key invalid3(3);
+    Cardanus_Key invalid4(4);
+    Cardanus_Key valid3(3);
+
+    invalid3.open_at(0,1);
+    invalid3.open_at(1,2);
+
+    invalid4.open_at(0,0);
+    invalid4.open_at(3,0);
+    invalid4.open_at(3,3);
+
+    valid3.open_at(0,0);
+    valid3.open_at(1,2);
+
+    EXPECT_FALSE(invalid3.is_valid());
+    EXPECT_FALSE(invalid4.is_valid());
+    EXPECT_TRUE(valid3.is_valid());
+}
+
 TEST(Cardanus_Key, to_string) {
     Cardanus_Key key(3);
 

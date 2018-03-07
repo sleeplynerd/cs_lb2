@@ -5,6 +5,7 @@
 #include "cardanus_grid.h"
 #include "cardanus_key.h"
 #include "rotation_sequence.h"
+#include "cipher_set.hpp"
 
 class Decryptor {
 private:
@@ -16,6 +17,7 @@ private:
                                          Cardanus_Key,
                                          Rotation_Sequence) const;
 public:
+    std::string             decrypt     (const Cipher_Set&);
     std::string             decrypt     (const Cardanus_Grid&,
                                          const Cardanus_Key&,
                                          const Rotation_Sequence&) const;

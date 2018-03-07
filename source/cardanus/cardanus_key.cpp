@@ -22,7 +22,7 @@ Cardanus_Key::Cardanus_Key(int size) : SIZE(size) {
 }
 
 Cardanus_Key::Cardanus_Key(const Cardanus_Key& key) : SIZE(key.SIZE) {
-    m_origin_offset = 0;
+    m_origin_offset = key.m_origin_offset;
     m_grid = new bool*[SIZE];
     for (int i = 0; i < SIZE; ++i) {
         m_grid[i] = new bool[SIZE];
@@ -106,6 +106,7 @@ void Cardanus_Key::rotate_ccw() {
 }
 
 void Cardanus_Key::rotate_origin() {
+    m_origin_offset = m_origin_offset % 4;
     while (m_origin_offset != 0) {
         if (m_origin_offset > 0) {
             rotate_ccw();
@@ -147,8 +148,8 @@ bool Cardanus_Key::is_opened(int row, int col) const {
 
 bool Cardanus_Key::is_valid() const {
     Cardanus_Key    reference(*this);
-    Cardanus_Key    vellum_or;
-    Cardanus_Key    vellum_xor;
+    Cardanus_Key    vellum_or(SIZE);
+    Cardanus_Key    vellum_xor(SIZE);
     const int       N_ROTATES = 4;
 
     vellum_xor.close_all();

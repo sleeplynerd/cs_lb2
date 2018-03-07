@@ -1,13 +1,4 @@
 project(cardanus)
 include_directories(${cardanus_SOURCE_DIR})
-add_library(cardanus
-    cardanus_grid.cpp
-    cardanus_grid.h
-    cardanus_key.cpp
-    cardanus_key.h
-    CMakeLists.txt
-    decryptor.cpp
-    decryptor.h
-    errors.hpp
-    rotation_sequence.cpp
-    rotation_sequence.h)
+file(GLOB SOURCES "*.cpp" "*.hpp" "*.h")
+add_library(cardanus ${SOURCES})

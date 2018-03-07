@@ -1,5 +1,5 @@
-#ifndef CARDANUS_KEY
-#define CARDANUS_KEY
+#ifndef CARDANUS_KEY_H
+#define CARDANUS_KEY_H
 
 #include <string>
 #include "rotation_sequence.h"
@@ -39,11 +39,13 @@ public:
     friend bool         operator!=          (const Cardanus_Key&, const Cardanus_Key&);
 };
 
-/* ================== Friends ================== */
+/* ============================================================================ */
+/*                                   Friends                                    */
+/* ============================================================================ */
 
 Cardanus_Key    operator^   (const Cardanus_Key&, const Cardanus_Key&) throw (Matrix_Dimension_Err);
 Cardanus_Key    operator|   (const Cardanus_Key&, const Cardanus_Key&) throw (Matrix_Dimension_Err);
 bool            operator==  (const Cardanus_Key&, const Cardanus_Key&);
 bool            operator!=  (const Cardanus_Key&, const Cardanus_Key&);
 
-#endif /* CARDANUS_KEY */
+#endif /* CARDANUS_KEY_H */
