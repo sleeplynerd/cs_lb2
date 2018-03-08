@@ -19,6 +19,8 @@ private:
     void                reflect_horizontal  ();
                         Cardanus_Key        ();
 public:
+    static const char   OPENED              = 'O';
+    static const char   CLOSED              = '-';
     void                rotate              (Rotation_Sequence);
     void                rotate_cw           ();
     void                rotate_ccw          ();

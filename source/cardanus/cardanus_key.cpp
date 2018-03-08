@@ -169,8 +169,6 @@ bool Cardanus_Key::is_valid() const {
 string Cardanus_Key::to_string(bool is_numbered) const {
     const char  NEWLINE = '\n';
     const char  SPACE   = ' ';
-    const char  OPENED  = 'O';
-    const char  CLOSED  = '-';
     string      text;
 
     /* Header */
