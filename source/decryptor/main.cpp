@@ -9,10 +9,12 @@ int main(void) {
 
     system("chcp 1251 & cls");
     interface.exec("help");
-    cout << "-->";
+    cout << "--> ";
     while (getline(cin, command_line)) {
-        cout << endl << interface.exec(command_line);
-        cout << endl <<  "-->";
+        if (!command_line.empty()) {
+           cout << endl << interface.exec(command_line);
+        }
+        cout << endl <<  "--> ";
     }
 
     return 0;

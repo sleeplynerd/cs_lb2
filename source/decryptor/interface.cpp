@@ -150,6 +150,9 @@ string Interface::decrypt() const {
     Decryptor   decryptor;
     string      result;
 
+    if (mp_grid == nullptr || mp_key == nullptr) {
+        return "Err. The grid was not set";
+    }
     result.append(mp_grid->to_string(true));
     result.append("\n");
     result.append(mp_key->to_string(true));
@@ -163,14 +166,15 @@ string Interface::decrypt() const {
 }
 
 string Interface::show_help() const {
-    const string help("- open_at \t {row}, \t {col}\n"
-                      "- close_at \t {row} \t {col}\n"
+    const string help("- open_at    {row} {col}\n"
+                      "- close_at   {row} {col}\n"
                       "- close_all\n"
-                      "- rotate {< | >}\n"
+                      "- rotate     {< | >}\n"
                       "- decrypt\n"
                       "- help\n"
-                      "- load {file_grid}, [file_key]\n"
-                      "- save {file_grid}, [file_key]\n");
+                      "- load       {file_grid} [file_key]\n"
+                      "- save       {file_grid} [file_key]\n\n"
+                      "- CTRL+C FOR EXIT\n");
     return help;
 }
 
@@ -254,7 +258,14 @@ string Interface::load_grid_from_file(const string& path) {
         mp_key = nullptr;
     }
 
+    if (!infile.is_open()) {
+        return "Unable to open file";
+    }
+
     while (getline(infile, buf)) {
+        if (buf.empty()) {
+            continue;
+        }
         /* Remove spaces */
         it = buf.begin();
         while (it != buf.end()) {
@@ -298,7 +309,14 @@ string Interface::load_key_from_file(const string& path) {
         mp_key = nullptr;
     }
 
+    if (!infile.is_open()) {
+        return "Unable to open file";
+    }
+
     while (getline(infile,buf)) {
+        if (buf.empty()) {
+            continue;
+        }
         /* Remove spaces */
         it = buf.begin();
         while (it != buf.end()) {
@@ -320,8 +338,8 @@ string Interface::load_key_from_file(const string& path) {
         for (it = buf.begin(); it != buf.end(); ++it) {
             if (*it == Cardanus_Key::OPENED) { 
                 mp_key->open_at(row,col);
-                col++;
             }
+            col++;
         }
         col = 0;
         row++;

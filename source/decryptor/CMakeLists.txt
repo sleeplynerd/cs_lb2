@@ -1,6 +1,5 @@
 project (decryptor)
-add_executable(decryptor 
-    main.cpp
-    interface.cpp
-    interface.h)
+add_library(decryptor interface.cpp interface.h)
+add_executable(decrypt main.cpp)
 target_link_libraries(decryptor cardanus)
+target_link_libraries(decrypt decryptor)
