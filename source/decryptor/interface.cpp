@@ -14,6 +14,8 @@ const char* Interface::DECRYPT      = "decrypt";
 const char* Interface::HELP         = "help";
 const char* Interface::LOAD         = "load";
 const char* Interface::SAVE         = "save";
+const char* Interface::SHOW_SCAN    = "show_scan";
+const char* Interface::DECRYPT_WORD = "decrypt_word";
 
 /* ============================================================================ */
 /*                          Constructors, destructors                           */
@@ -61,6 +63,26 @@ Interface::Command_List Interface::split_args(const string& cmdline) const {
     return cmdlist;
 }
 
+bool Interface::is_numeric(const string& word) const {
+    string::const_iterator it = word.cbegin();
+    while (it != word.cend() && isdigit(*it)) {
+        ++it;
+    }
+    return (!word.empty() && it == word.cend());
+}
+
+string Interface::get_decrypted_text(Cardanus_Grid grid, Cardanus_Key key) const {
+    string      decrypted   = Decryptor().decrypt(grid, key, Rotation_Sequence().cw(4));
+    int         decr_size   = decrypted.size();
+    const char  SPACE       = ' ';
+    
+    for (int i = 1; i < N_ROTATES; ++i) {
+        decrypted.insert(decr_size / 4 * i + i - 1, 1, SPACE);
+    }
+
+    return decrypted;
+}
+
 string Interface::open_at(Command_List& cmdlist) {
     string  arg_row;
     string  arg_col;
@@ -86,7 +108,11 @@ string Interface::open_at(Command_List& cmdlist) {
     }
 
     mp_key->open_at(row, col);
-    return mp_key->to_string();
+    if (!(mp_key->is_valid())) {
+        mp_key->close_at(row,col);
+        return "Err. Cannot open. Opening of the given position invalidates the key.";
+    }
+    return "Done!";
 }
 
 string Interface::close_at(Command_List& cmdlist) {
@@ -114,7 +140,7 @@ string Interface::close_at(Command_List& cmdlist) {
     }
 
     mp_key->close_at(row, col);
-    return mp_key->to_string();
+    return "Done";
 }
 
 string Interface::close_all() {
@@ -123,7 +149,7 @@ string Interface::close_all() {
     }
 
     mp_key->close_all();
-    return mp_key->to_string();
+    return "Done!";
 }
 
 string Interface::rotate(Command_List& cmdlist) {
@@ -146,34 +172,18 @@ string Interface::rotate(Command_List& cmdlist) {
     return mp_key->to_string();
 }
 
-string Interface::decrypt() const {
-    Decryptor   decryptor;
-    string      result;
-
-    if (mp_grid == nullptr || mp_key == nullptr) {
-        return "Err. The grid was not set";
-    }
-    result.append(mp_grid->to_string(true));
-    result.append("\n");
-    result.append(mp_key->to_string(true));
-    result.append("\n");
-    result.append("\n");
-    result.append(decryptor.decrypt(*mp_grid, *mp_key, Rotation_Sequence().cw(4)));
-    result.append("\n");
-    result.append("\n");
-    
-    return result;
-}
-
 string Interface::show_help() const {
-    const string help("- open_at    {row} {col}\n"
-                      "- close_at   {row} {col}\n"
+    const string help("- open_at        {row}       {col}\n"
+                      "- close_at       {row}       {col}\n"
+                      "- load           {file_grid} [file_key]\n"
+                      "- save           {file_grid} [file_key]\n"
+                      "- rotate         {< | >}\n"
+                      "- decrypt_word   {known_word}\n"
+                      "- {0-9*} {0-9*} [{0-9*} {0-9*}]*\n"
                       "- close_all\n"
-                      "- rotate     {< | >}\n"
                       "- decrypt\n"
                       "- help\n"
-                      "- load       {file_grid} [file_key]\n"
-                      "- save       {file_grid} [file_key]\n\n"
+                      "- show_scan\n"
                       "- CTRL+C FOR EXIT\n");
     return help;
 }
@@ -237,6 +247,164 @@ string Interface::save(Command_List& cmdlist) {
         return "Invalid argument set";
     }
     return result;
+}
+
+string Interface::decrypt() const {
+    const char  DELIMETER = ' ';
+    const char  NEWLINE = '\n';
+    const int   ROW_WIDTH = 1;
+    const int   TABLES_GAP = 2;
+    Decryptor   decryptor;
+    bool        a_countdown[N_ROTATES*2] = {1,1,1,0,0,0,0,1};
+    bool        f_v_from_null;
+    bool        f_h_from_null;
+    int         addon;
+    int         target;
+    int         base;
+    int         decryption_size;
+    string      process;
+    string      decryption;
+
+    if (mp_grid == nullptr || mp_key == nullptr) {
+        return "Err. Grid must be set";
+    }
+
+    for (int rot = 0; rot < N_ROTATES; ++rot) {
+        /* Determine a base */
+        f_v_from_null = a_countdown[2*rot];
+        f_h_from_null = a_countdown[2*rot+1];
+
+        /* === Header === */
+        process.append(ROW_WIDTH * 2, DELIMETER);
+        for (int i = 0; i < mp_grid->get_size(); ++i) {
+            process.append(to_string(i));
+            process.append((2 * ROW_WIDTH - to_string(i).size()), DELIMETER);
+        }
+        process.append((TABLES_GAP+2) * ROW_WIDTH, DELIMETER);
+        if (f_h_from_null) {
+            base = 0;
+            target = mp_grid->get_size();
+            addon = 1;
+        } else {
+            base = mp_grid->get_size()-1;
+            target = -1;
+            addon = -1;
+        }
+        for (int i = base; i != target; i += addon) {
+            process.append(to_string(i));
+            process.append((2 * ROW_WIDTH - to_string(i).size()), DELIMETER);
+        }
+        process.push_back(NEWLINE);
+
+        /* === Body === */
+        if (f_v_from_null) {
+            base = 0;
+            target = mp_grid->get_size();
+            addon = 1;
+        } else {
+            base = mp_grid->get_size() - 1;
+            target = 0;
+            addon = -1;
+        }
+        for (int i = 0; i < mp_grid->get_size(); ++i) {
+            /* Cardanus grid */
+            process.append(to_string(i));
+            process.append((2 * ROW_WIDTH - to_string(i).size()), DELIMETER);
+            for (int j = 0; j < mp_grid->get_size(); ++j) {
+                process.append(1, mp_grid->get_at(i,j));
+                process.append((2 * ROW_WIDTH - 1), DELIMETER);
+            }
+            /* Cardanus key */
+            process.append((TABLES_GAP * ROW_WIDTH), DELIMETER);
+            process.append(to_string(base));
+            process.append((2 * ROW_WIDTH - to_string(base).size()), DELIMETER);
+            for (int j = 0; j < mp_grid->get_size(); ++j) {
+                if (mp_key->is_opened(i,j)) {
+                    process.append(1, Cardanus_Key::OPENED);
+                } else {
+                    process.append(1, Cardanus_Key::CLOSED);
+                }
+                process.append((2 * ROW_WIDTH - 1), DELIMETER);
+            }
+            base += addon;
+            process.push_back(NEWLINE);
+        }
+        process.push_back(NEWLINE);
+        mp_key->rotate_cw();
+    }
+    process.push_back(NEWLINE);
+
+    /* Decryption */
+    decryption = get_decrypted_text(*mp_grid, *mp_key);
+    
+
+    process.append(decryption);
+    process.push_back(NEWLINE);
+
+    return process;
+}
+
+string Interface::decrypt_by_word(Command_List& cmdlist) {
+    string              word;
+    string              result;
+    Decryptor           decryptor;
+    list<Cardanus_Key>  list_crdkey;
+
+    if (mp_grid == nullptr) {
+        return "Err. Grid must be set";
+    }
+
+    cmdlist.pop_front();
+    word = cmdlist.front();
+
+    list_crdkey = decryptor.decrypt_by_word(word, *mp_grid);
+
+    for (auto it = list_crdkey.begin(); it != list_crdkey.end(); ++it) {
+        if (it->is_valid()) {
+            result.append(it->to_string(true));
+            result.append(get_decrypted_text(*mp_grid, *it));
+            result.push_back('\n');
+        }
+    }
+
+    return result;
+}
+
+string Interface::contextual_openclose(Command_List& cmdlist) {
+    Command_List::const_iterator    it;
+    int                             row;
+    int                             col;
+    int                             counter = 0;
+    
+    for (it = cmdlist.cbegin(); it != cmdlist.cend(); ++it) {
+        if (!is_numeric(*it)) {
+            return "All the input parameters must be pairs of unsigned integers";
+        }
+        counter++;
+    }
+
+    if (counter % 2 != 0) {
+        return "All the input parameters must be pairs of unsigned integers";
+    }
+
+    if (mp_grid == nullptr) {
+        return "Grid must be set";
+    }
+
+    it = cmdlist.cbegin();
+    while (it != cmdlist.cend()) {
+        row = stoi(*it);
+        it++;
+        col = stoi(*it);
+        it++;
+        if (mp_key->is_opened(row, col)) {
+            mp_key->close_at(row,col);
+        } else {
+            mp_key->open_at(row,col);
+        }
+    }
+
+    return "Done!";
 }
 
 /* ============================================================================ */
@@ -392,6 +560,10 @@ string Interface::exec(const string& cmdline) {
             return save(cmdlist);
         } else if (command == LOAD) {
             return load(cmdlist);
+        } else if (command == DECRYPT_WORD) {
+            return decrypt_by_word(cmdlist);
+        } else if (is_numeric(command)) {
+            return contextual_openclose(cmdlist);
         }
     } catch (...) {
         return "An error occured";

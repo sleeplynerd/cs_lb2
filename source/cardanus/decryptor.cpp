@@ -41,6 +41,45 @@ Decryptor Decryptor::operator=(const Decryptor& dec) {
 /* ================================ Private methods ============================ */
 /* ============================================================================= */
 
+void Decryptor::decr_word(const Cardanus_Grid& grid,
+                          Cardanus_Key key,
+                          string wordtail,
+                          list<Cardanus_Key>& keylist) const 
+{
+    int     last_row = 0;
+    int     last_col = 0;
+    char    next_letter;
+
+    if (wordtail.empty()) {
+        keylist.push_back(key);
+        return;
+    } else {
+        next_letter = wordtail.front();
+        wordtail.erase(wordtail.begin());
+    }
+
+    for (int i = key.get_size() - 1; i > -1; --i) {
+        for (int j = key.get_size() - 1; j > -1; --j) {
+            if (key.is_opened(i,j)) {
+                last_row = i;
+                last_col = j+1;
+                i = -1;
+                break;
+            }
+        }
+    }
+
+    for (int row = last_row; row < key.get_size(); ++row) {
+        for (int col = (row == last_row ? last_col : 0); col < key.get_size(); ++col) {
+            if (grid.get_at(row,col) == next_letter) {
+                Cardanus_Key newkey(key);
+                newkey.open_at(row,col);
+                decr_word(grid, newkey, wordtail, keylist);
+            }
+        }
+    }
+}
+
 string Decryptor::decr(Cardanus_Grid grid,
                        Cardanus_Key key,
                        Rotation_Sequence sequence) const
@@ -77,7 +116,24 @@ string Decryptor::decr(Cardanus_Grid grid,
 /* ================================ Public methods ============================= */
 /* ============================================================================= */
 
-string Decryptor::decrypt(const Cipher_Set& ciphset) {
+list<Cardanus_Key> Decryptor::decrypt_by_word(const string& word) const {
+    list<Cardanus_Key> listkey;
+
+    if (mp_grid == nullptr) {
+        return listkey;
+    }
+
+    decr_word(*mp_grid, Cardanus_Key(mp_grid->get_size()), word, listkey);
+    return listkey;
+}
+
+list<Cardanus_Key> Decryptor::decrypt_by_word(const string& word, const Cardanus_Grid& grid) const {
+    list<Cardanus_Key> listkey;
+    decr_word(grid, Cardanus_Key(grid.get_size()), word, listkey);
+    return listkey;
+}
+
+string Decryptor::decrypt(const Cipher_Set& ciphset) const {
     return decr(ciphset.grid, ciphset.key, ciphset.sequence);
 }
 
