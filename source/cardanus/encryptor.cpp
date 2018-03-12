@@ -6,6 +6,18 @@ using namespace std;
 /*                               Private methods                                */
 /* ============================================================================ */
 
+bool Encryptor::is_punctmark(char symbol) const {
+    const char  TERMINATOR      = '~';
+    const char  PUNCTMARKS[]    = {',', '.', '-', ' ', '?', ':', ';', '!',  TERMINATOR};
+
+    for (const char * it = PUNCTMARKS; *it != TERMINATOR; ++it) {
+        if (symbol == *it) {
+            return true;
+        }
+    }
+    return false;
+}
+
 int Encryptor::compute_grid_size(const string& text) const {
     int text_len = 0;
     float size;
@@ -53,10 +65,10 @@ Cardanus_Key Encryptor::generate_key(int key_size) const {
 /*                                Public methods                                */
 /* ============================================================================ */
 
-Cipher_Set Encryptor::encrypt(const string& text, Rotation_Sequence seq) const {
+Cipher_Set Encryptor::encrypt(const string& text, int user_size, Rotation_Sequence seq) const {
     int                     grid_size = compute_grid_size(text);
     Cardanus_Grid           grid(grid_size);
-    Cardanus_Key            key(generate_key(grid_size));
+    Cardanus_Key            key(generate_key((grid_size > user_size ? grid_size : user_size)));
     Rotation_Sequence::Dir  dir;
     string::const_iterator  it = text.cbegin();
 
@@ -70,7 +82,7 @@ Cipher_Set Encryptor::encrypt(const string& text, Rotation_Sequence seq) const {
                             key.rotate_origin();
                             seq.reset();
                             return Cipher_Set(grid, key, seq);
-                        } else if (*it != SPACE) {
+                        } else if (!is_punctmark(*it)) {
                             break;
                         }
                         ++it;

@@ -37,6 +37,7 @@ public:
     Cardanus_Key        operator=           (const Cardanus_Key&);
     friend Cardanus_Key operator^           (const Cardanus_Key&, const Cardanus_Key&);
     friend Cardanus_Key operator|           (const Cardanus_Key&, const Cardanus_Key&);
+    friend Cardanus_Key operator&           (const Cardanus_Key&, const Cardanus_Key&);
     friend bool         operator==          (const Cardanus_Key&, const Cardanus_Key&);
     friend bool         operator!=          (const Cardanus_Key&, const Cardanus_Key&);
 };

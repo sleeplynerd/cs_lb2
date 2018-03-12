@@ -23,6 +23,18 @@ Rotation_Sequence Rotation_Sequence::operator=(const Rotation_Sequence& seq) {
 /* ============================== Public methods =============================== */
 /* ============================================================================= */
 
+Rotation_Sequence Rotation_Sequence::get_reverse(Rotation_Sequence sequence) {
+    Dir                 dir;
+    Rotation_Sequence   seq;
+    
+    for (auto it = sequence.m_sequence.rbegin(); it != sequence.m_sequence.rend(); ++it) {
+        seq.rotate(*it);
+    }
+
+    seq.reset();
+    return seq;
+}
+
 Rotation_Sequence& Rotation_Sequence::cw(int n_rotates) {
     for (int i = 0; i < n_rotates; ++i) {
         m_sequence.push_back(CW);
@@ -34,6 +46,14 @@ Rotation_Sequence& Rotation_Sequence::cw(int n_rotates) {
 Rotation_Sequence& Rotation_Sequence::ccw(int n_rotates) {
     for (int i = 0; i < n_rotates; ++i) {
         m_sequence.push_back(CCW);
+    }
+    reset();
+    return *this;
+}
+
+Rotation_Sequence& Rotation_Sequence::rotate(Dir dir, int n_rotates) {
+    for (int i = 0; i < n_rotates; ++i){
+        m_sequence.push_back(dir);
     }
     reset();
     return *this;

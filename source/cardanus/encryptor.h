@@ -14,10 +14,12 @@ private:
     static const char   SPACE               = ' ';
    // mutable Generator   m_generator;
 
+    bool                is_punctmark        (char symbol) const;
     Cardanus_Key        generate_key        (int key_size) const;
     int                 compute_grid_size   (const std::string&) const;
 public:
     Cipher_Set          encrypt             (const std::string& text, 
+                                             int key_size = -1,
                                              Rotation_Sequence seq = Rotation_Sequence().cw(4)) const;
 };
 

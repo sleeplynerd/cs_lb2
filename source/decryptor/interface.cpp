@@ -16,6 +16,17 @@ const char* Interface::LOAD         = "load";
 const char* Interface::SAVE         = "save";
 const char* Interface::SHOW_SCAN    = "show_scan";
 const char* Interface::DECRYPT_WORD = "decrypt_word";
+const char* Interface::FULL_HELP    = "- open_at        {row}           {col}\n"
+                                      "- close_at       {row}           {col}\n"
+                                      "- load           {file_grid}     [file_key]\n"
+                                      "- save           {file_grid}     [file_key]\n"
+                                      "- decrypt_word   {known_word}    [.*](CONSIDER ROTATES?)\n"
+                                      "- {0-9*} {0-9*}  [{0-9*} {0-9*}]*\n"
+                                      "- rotate         {< | >}\n"
+                                      "- close_all\n"
+                                      "- decrypt\n"
+                                      "- help\n"
+                                      "- CTRL+C FOR EXIT\n";
 
 /* ============================================================================ */
 /*                          Constructors, destructors                           */
@@ -173,18 +184,7 @@ string Interface::rotate(Command_List& cmdlist) {
 }
 
 string Interface::show_help() const {
-    const string help("- open_at        {row}       {col}\n"
-                      "- close_at       {row}       {col}\n"
-                      "- load           {file_grid} [file_key]\n"
-                      "- save           {file_grid} [file_key]\n"
-                      "- rotate         {< | >}\n"
-                      "- decrypt_word   {known_word}\n"
-                      "- {0-9*} {0-9*} [{0-9*} {0-9*}]*\n"
-                      "- close_all\n"
-                      "- decrypt\n"
-                      "- help\n"
-                      "- show_scan\n"
-                      "- CTRL+C FOR EXIT\n");
+    const string help(FULL_HELP);
     return help;
 }
 
@@ -345,10 +345,11 @@ string Interface::decrypt() const {
 }
 
 string Interface::decrypt_by_word(Command_List& cmdlist) {
-    string              word;
-    string              result;
-    Decryptor           decryptor;
-    list<Cardanus_Key>  list_crdkey;
+    Rotation_Sequence::Dir  dir;
+    Decryptor               decryptor;
+    list<Cardanus_Key>      listkey;
+    string                  word;
+    string                  result;
 
     if (mp_grid == nullptr) {
         return "Err. Grid must be set";
@@ -356,16 +357,16 @@ string Interface::decrypt_by_word(Command_List& cmdlist) {
 
     cmdlist.pop_front();
     word = cmdlist.front();
+    cmdlist.pop_front();
+    dir = (cmdlist.empty() ? Rotation_Sequence::STOP : Rotation_Sequence::CW);
 
-    list_crdkey = decryptor.decrypt_by_word(word, *mp_grid);
-
-    for (auto it = list_crdkey.begin(); it != list_crdkey.end(); ++it) {
-        if (it->is_valid()) {
-            result.append(it->to_string(true));
-            result.append(get_decrypted_text(*mp_grid, *it));
-            result.push_back('\n');
-        }
-    }
+    listkey = decryptor.pick_key_by_word(word, *mp_grid, dir);
+    while (!listkey.empty()) {
+        result.append(listkey.front().to_string(true));
+        result.append(get_decrypted_text(*mp_grid, listkey.front()));
+        result.push_back('\n');
+        listkey.pop_front();
+    }        
 
     return result;
 }
@@ -565,8 +566,10 @@ string Interface::exec(const string& cmdline) {
         } else if (is_numeric(command)) {
             return contextual_openclose(cmdlist);
         }
+    } catch (const exception& e) {
+        return e.what();
     } catch (...) {
-        return "An error occured";
+        return "An undefined error occured";
     }
     return "Undefined command";
 }
