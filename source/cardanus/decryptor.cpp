@@ -46,11 +46,12 @@ list<Cardanus_Key> Decryptor::filter_keys(Cardanus_Grid grid,
                                           const string& word,
                                           Rotation_Sequence::Dir dir) const 
 {
+    typedef Rotation_Sequence Seq;
     string              buf;
     list<Cardanus_Key>  result;
 
     for (list<Cardanus_Key>::const_iterator it = keys.cbegin(); it != keys.cend(); ++it) {
-        buf = decrypt(grid, *it, Rotation_Sequence().rotate(dir,4));
+        buf = decrypt(grid, *it, Rotation_Sequence().rotate((dir == Seq::STOP ? Seq::CW : dir), (dir == Seq::STOP ? 1 : 4)));
         buf.append(buf);
         if (buf.find(word) != string::npos) {
             result.push_back(*it);
@@ -119,11 +120,11 @@ void Decryptor::pick_key_by_word(std::string word,
         for (int row = (rot == rotations_made ? last_row : 0); row < grid.get_size(); row++) {
             for (int col = (row == last_row && rot == rotations_made ? last_col : 0); col < grid.get_size(); ++col) {
                 if (key.is_opened(row, col)) {
-                    if (grid.get_at(row,col) != next_letter) {
+                    if (grid.get_at(row,col) == next_letter) {
                         pick_key_by_word(word, grid, key, dir, listkey, row, col+1, pos+1, rot);
-                        return;
                     } else {
-                        pick_key_by_word(word, grid, original, dir, listkey, row, col+1, 0, rot);
+                        //pick_key_by_word(word, grid, original, dir, listkey, row, col+1, 0, rot);
+                        return;
                     }
                 } else if (grid.get_at(row, col) == next_letter) {
                     Cardanus_Key newkey(key);
@@ -133,6 +134,10 @@ void Decryptor::pick_key_by_word(std::string word,
                     }
                 }
             }
+        }
+        /* Prevent non-needed offsets to a next side */
+        if (pos == 0) {
+            return;
         }
         key.rotate(Rotation_Sequence().rotate(dir));
     }

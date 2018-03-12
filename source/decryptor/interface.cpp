@@ -20,11 +20,11 @@ const char* Interface::FULL_HELP    = "- open_at        {row}           {col}\n"
                                       "- close_at       {row}           {col}\n"
                                       "- load           {file_grid}     [file_key]\n"
                                       "- save           {file_grid}     [file_key]\n"
-                                      "- decrypt_word   {known_word}    [.*](CONSIDER ROTATES?)\n"
-                                      "- {0-9*} {0-9*}  [{0-9*} {0-9*}]*\n"
+                                      "- decrypt_word   {known_word}    [rot](CONSIDER ROTATIONS?) [file <path>](FILE OUT?)\n"
+                                      "- decrypt        [file <path>](FILE OUT?)\n"
+                                      "- {0-9*} {0-9*}  [{0-9*} {0-9*}]* (OPEN/CLOSE GIVEN POSITIONS)\n"
                                       "- rotate         {< | >}\n"
                                       "- close_all\n"
-                                      "- decrypt\n"
                                       "- help\n"
                                       "- CTRL+C FOR EXIT\n";
 
@@ -80,6 +80,32 @@ bool Interface::is_numeric(const string& word) const {
         ++it;
     }
     return (!word.empty() && it == word.cend());
+}
+
+string Interface::get_path_to_save(Command_List& cmdlist) const {
+    bool    f_save = false;
+    string  filepath;
+    int     n_args = 0;
+
+    for (Command_List::iterator it = cmdlist.begin(); it != cmdlist.end(); ++it) {
+        if (*it == "file") {
+            f_save = true;
+            n_args++;
+        } else if (f_save == true) {
+            filepath = *it;
+            n_args++;
+        }
+    }
+
+    for (int i = 0; i < n_args; ++i) {
+        cmdlist.pop_back();
+    }
+
+    if (n_args == 2) {
+        return filepath;
+    } else {
+        return "";
+    }
 }
 
 string Interface::get_decrypted_text(Cardanus_Grid grid, Cardanus_Key key) const {
@@ -358,7 +384,7 @@ string Interface::decrypt_by_word(Command_List& cmdlist) {
     cmdlist.pop_front();
     word = cmdlist.front();
     cmdlist.pop_front();
-    dir = (cmdlist.empty() ? Rotation_Sequence::STOP : Rotation_Sequence::CW);
+    dir = (cmdlist.empty() ? Rotation_Sequence::STOP : (cmdlist.front() == "rot" ? Rotation_Sequence::CW : Rotation_Sequence::STOP));
 
     listkey = decryptor.pick_key_by_word(word, *mp_grid, dir);
     while (!listkey.empty()) {
@@ -376,6 +402,7 @@ string Interface::contextual_openclose(Command_List& cmdlist) {
     int                             row;
     int                             col;
     int                             counter = 0;
+    bool                            f_got_errors = false;
     
     for (it = cmdlist.cbegin(); it != cmdlist.cend(); ++it) {
         if (!is_numeric(*it)) {
@@ -402,15 +429,18 @@ string Interface::contextual_openclose(Command_List& cmdlist) {
             mp_key->close_at(row,col);
         } else {
             mp_key->open_at(row,col);
+            if (!(mp_key->is_valid())) {
+                f_got_errors = true;
+                mp_key->close_at(row,col);
+            }
         }
     }
 
+    if (f_got_errors) {
+        return "Some positions were not opened to save key validity";
+    }
     return "Done!";
 }
-
-/* ============================================================================ */
-/*                                Public methods                                */
-/* ============================================================================ */
 
 string Interface::load_grid_from_file(const string& path) {
     const char          SPACE = ' ';
@@ -541,9 +571,23 @@ string Interface::save_key_to_file(const string& path) {
     return "Done!";
 }
 
+string Interface::save_to_file(const string& filepath, const string&  saving_string) const {
+    ofstream outfile(filepath);
+
+    outfile << saving_string;
+    return "Done!";
+}
+
+
+/* ============================================================================ */
+/*                                Public methods                                */
+/* ============================================================================ */
+
+
 string Interface::exec(const string& cmdline) {
     Command_List    cmdlist = split_args(cmdline);
     string          command = cmdlist.front();
+    string          savepath= get_path_to_save(cmdlist);
     try {
         if (command == OPEN_AT) {
             return open_at(cmdlist);
@@ -554,7 +598,12 @@ string Interface::exec(const string& cmdline) {
         } else if (command == CLOSE_ALL) {
             return close_all();
         } else if (command == DECRYPT) {
-            return decrypt();
+            if (savepath != "") {
+                string result(save_to_file(savepath, decrypt()));
+                system(string("notepad ").append(savepath).c_str());
+                return result;
+            }
+            return decrypt(); 
         } else if (command == HELP) {
             return show_help();
         } else if (command == SAVE) {
@@ -562,6 +611,11 @@ string Interface::exec(const string& cmdline) {
         } else if (command == LOAD) {
             return load(cmdlist);
         } else if (command == DECRYPT_WORD) {
+            if (savepath != "") {
+            string result(save_to_file(savepath, decrypt_by_word(cmdlist)));
+                system(string("notepad ").append(savepath).c_str());
+                return result;
+            }
             return decrypt_by_word(cmdlist);
         } else if (is_numeric(command)) {
             return contextual_openclose(cmdlist);

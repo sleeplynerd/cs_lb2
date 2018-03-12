@@ -28,6 +28,7 @@ private:
 
     Command_List        split_args          (const std::string& cmdline) const;
     bool                is_numeric          (const std::string&) const;
+    std::string         get_path_to_save    (Command_List&) const;
     std::string         get_decrypted_text  (Cardanus_Grid, Cardanus_Key) const;
     std::string         open_at             (Command_List&);
     std::string         close_at            (Command_List&);
@@ -39,11 +40,12 @@ private:
     std::string         decrypt             () const;
     std::string         decrypt_by_word     (Command_List&);
     std::string         contextual_openclose(Command_List&);
-public:
     std::string         load_grid_from_file (const std::string& filepath);
     std::string         load_key_from_file  (const std::string& filepath);
     std::string         save_grid_to_file   (const std::string& filepath);
     std::string         save_key_to_file    (const std::string& filepath);
+    std::string         save_to_file        (const std::string& filepath, const std::string& saving_string) const;
+public:
     std::string         exec                (const std::string& cmdline);
                         Interface           ();
                         ~Interface          ();
