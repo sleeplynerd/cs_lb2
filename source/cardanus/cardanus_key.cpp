@@ -239,6 +239,22 @@ Cardanus_Key operator|(const Cardanus_Key& lhs, const Cardanus_Key& rhs) throw (
     return key_res;
 }
 
+Cardanus_Key operator&(const Cardanus_Key& lhs, const Cardanus_Key& rhs) throw (Matrix_Dimension_Err) {
+    Cardanus_Key key_res(lhs.get_size());
+
+    if (lhs.get_size() != rhs.get_size()) {
+        throw Matrix_Dimension_Err();
+    }
+
+    for (int i = 0; i < lhs.get_size(); ++i) {
+        for (int j = 0; j < rhs.get_size(); ++j) {
+            key_res.m_grid[i][j] = lhs.m_grid[i][j] & rhs.m_grid[i][j];
+        }
+    }
+
+    return key_res;
+}
+
 bool operator==(const Cardanus_Key& lhs, const Cardanus_Key& rhs) {
     if (lhs.get_size() != rhs.get_size()) {
         return false;

@@ -10,11 +10,17 @@ int main(void) {
     system("chcp 1251 & cls");
     interface.exec("help");
     cout << "--> ";
-    while (getline(cin, command_line)) {
-        if (!command_line.empty()) {
-           cout << endl << interface.exec(command_line);
+    while (1) {
+        try {
+            while (getline(cin, command_line)) {
+                if (!command_line.empty()) {
+                    cout << endl << interface.exec(command_line);
+                }
+                cout << endl <<  "--> ";
+            } 
+        } catch (...) {
+            cout << "Undefined command" << endl <<  "--> ";
         }
-        cout << endl <<  "--> ";
     }
 
     return 0;

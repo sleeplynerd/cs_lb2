@@ -1,3 +1,4 @@
 include_directories(cardanus)
 add_subdirectory(cardanus)
 add_subdirectory(decryptor)
+add_subdirectory(encryptor)
