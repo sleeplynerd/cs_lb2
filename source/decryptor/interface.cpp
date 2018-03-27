@@ -16,11 +16,13 @@ const char* Interface::LOAD         = "load";
 const char* Interface::SAVE         = "save";
 const char* Interface::SHOW_SCAN    = "show_scan";
 const char* Interface::DECRYPT_WORD = "decrypt_word";
+const char* Interface::DECRYPT_SAFE = "decrypt_safe";
 const char* Interface::FULL_HELP    = "- open_at        {row}           {col}\n"
                                       "- close_at       {row}           {col}\n"
                                       "- load           {file_grid}     [file_key]\n"
                                       "- save           {file_grid}     [file_key]\n"
                                       "- decrypt_word   {known_word}    [rot](CONSIDER ROTATIONS?) [file <path>](FILE OUT?)\n"
+                                      "- decrypt_safe   {seeking_word}  {[word_to_save_1] [word_to_save_2] ...} [file <path>](FILE OUT?)\n"
                                       "- decrypt        [file <path>](FILE OUT?)\n"
                                       "- {0-9*} {0-9*}  [{0-9*} {0-9*}]* (OPEN/CLOSE GIVEN POSITIONS)\n"
                                       "- rotate         {< | >}\n"
@@ -80,6 +82,50 @@ bool Interface::is_numeric(const string& word) const {
         ++it;
     }
     return (!word.empty() && it == word.cend());
+}
+
+bool Interface::is_safe_key(const list<string>& words_to_save, const string& word_to_find, const Cardanus_Key& key) const {
+    Decryptor       decryptor;
+    string          decryption;
+    Cardanus_Key    vellum(key.get_size());
+
+    if (mp_grid == nullptr) {
+        return false;
+    }
+
+    vellum = (key | *mp_key);
+
+    if (!vellum.is_valid()) {
+        return false;
+    }
+
+    decryption = decryptor.decrypt(*mp_grid, vellum, Rotation_Sequence().rotate(Rotation_Sequence::CW, 4));
+    decryption.append(decryption);
+    if (decryption.find(word_to_find) == string::npos) {
+        return false;
+    }
+    for (auto it = words_to_save.begin(); it != words_to_save.end(); ++it) {
+        if (decryption.find(*it) == string::npos) {
+            return false;
+        }
+    }
+
+
+    return true;
+}
+
+list<Cardanus_Key> Interface::get_keys_rotations(const list<Cardanus_Key>& keylist) const {
+    list<Cardanus_Key>  result;
+
+    for (auto it = keylist.begin(); it != keylist.end(); ++it) {
+        Cardanus_Key new_key(*it);
+        for (int i = 0; i < 4; ++i) {
+            result.push_back(new_key);
+            new_key.rotate_cw();
+        }
+    }
+
+    return result;
 }
 
 string Interface::get_path_to_save(Command_List& cmdlist) const {
@@ -276,24 +322,33 @@ string Interface::save(Command_List& cmdlist) {
 }
 
 string Interface::decrypt() const {
-    const char  DELIMETER = ' ';
-    const char  NEWLINE = '\n';
-    const int   ROW_WIDTH = 1;
-    const int   TABLES_GAP = 2;
-    Decryptor   decryptor;
-    bool        a_countdown[N_ROTATES*2] = {1,1,1,0,0,0,0,1};
-    bool        f_v_from_null;
-    bool        f_h_from_null;
-    int         addon;
-    int         target;
-    int         base;
-    int         decryption_size;
-    string      process;
-    string      decryption;
+    const char      DELIMETER = ' ';
+    const char      NEWLINE = '\n';
+    const int       ROW_WIDTH = 1;
+    const int       TABLES_GAP = 2;
+    const char      RESTRICTED_FIELD = '~';
+    Decryptor       decryptor;
+    Cardanus_Key    key_vellum(mp_key == nullptr ? 0 : *mp_key);   
+    bool            a_countdown[N_ROTATES*2] = {1,1,1,0,0,0,0,1};
+    bool            f_v_from_null;
+    bool            f_h_from_null;
+    int             addon;
+    int             target;
+    int             base;
+    int             decryption_size;
+    string          process;
+    string          decryption;
 
     if (mp_grid == nullptr || mp_key == nullptr) {
         return "Err. Grid must be set";
     }
+
+    for (int i = 0; i < 4; ++i) {
+        key_vellum = key_vellum | *mp_key;
+        key_vellum.rotate_cw();
+    }
+    mp_key->rotate_origin();
+    key_vellum.rotate_origin();
 
     for (int rot = 0; rot < N_ROTATES; ++rot) {
         /* Determine a base */
@@ -348,7 +403,7 @@ string Interface::decrypt() const {
                 if (mp_key->is_opened(i,j)) {
                     process.append(1, Cardanus_Key::OPENED);
                 } else {
-                    process.append(1, Cardanus_Key::CLOSED);
+                    process.append(1, (key_vellum.is_opened(i,j) ? RESTRICTED_FIELD : Cardanus_Key::CLOSED));
                 }
                 process.append((2 * ROW_WIDTH - 1), DELIMETER);
             }
@@ -357,6 +412,7 @@ string Interface::decrypt() const {
         }
         process.push_back(NEWLINE);
         mp_key->rotate_cw();
+        key_vellum.rotate_cw();
     }
     process.push_back(NEWLINE);
 
@@ -393,6 +449,37 @@ string Interface::decrypt_by_word(Command_List& cmdlist) {
         result.push_back('\n');
         listkey.pop_front();
     }        
+
+    return result;
+}
+
+string Interface::decrypt_safe(Command_List& cmdlist) {
+    list<string>        words_to_save;
+    string              word_to_find;
+    Decryptor           decryptor;
+    list<Cardanus_Key>  keys;
+    string              result;
+
+    if (mp_grid == nullptr) {
+        return "Err. Grid must be set";
+    }
+
+    cmdlist.pop_front();
+    word_to_find = cmdlist.front();
+    cmdlist.pop_front();
+    while (!cmdlist.empty()) {
+        words_to_save.push_back(cmdlist.front());
+        cmdlist.pop_front();
+    }
+    keys = decryptor.pick_key_by_word(word_to_find, *mp_grid, Rotation_Sequence::CW);
+    keys = get_keys_rotations(keys);
+    for (auto it = keys.begin(); it != keys.end(); ++it) {
+        if (is_safe_key(words_to_save, word_to_find, *it)) {
+            result.append((*it | *mp_key).to_string(true));
+            result.append(get_decrypted_text(*mp_grid, (*it | *mp_key)));
+            result.push_back('\n');
+        }
+    }
 
     return result;
 }
@@ -612,13 +699,20 @@ string Interface::exec(const string& cmdline) {
             return load(cmdlist);
         } else if (command == DECRYPT_WORD) {
             if (savepath != "") {
-            string result(save_to_file(savepath, decrypt_by_word(cmdlist)));
+                string result(save_to_file(savepath, decrypt_by_word(cmdlist)));
                 system(string("notepad ").append(savepath).c_str());
                 return result;
             }
             return decrypt_by_word(cmdlist);
         } else if (is_numeric(command)) {
             return contextual_openclose(cmdlist);
+        } else if (command == DECRYPT_SAFE) {
+            if (savepath != "") {
+                string result(save_to_file(savepath, decrypt_safe(cmdlist)));
+                system(string("notepad ").append(savepath).c_str());
+                return result;
+            }
+            return decrypt_safe(cmdlist);
         }
     } catch (const exception& e) {
         return e.what();
