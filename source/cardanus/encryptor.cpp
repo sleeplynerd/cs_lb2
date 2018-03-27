@@ -67,7 +67,7 @@ Cardanus_Key Encryptor::generate_key(int key_size) const {
 
 Cipher_Set Encryptor::encrypt(const string& text, int user_size, Rotation_Sequence seq) const {
     int                     grid_size = compute_grid_size(text);
-    Cardanus_Grid           grid(grid_size);
+    Cardanus_Grid           grid(grid_size > user_size ? grid_size : user_size);
     Cardanus_Key            key(generate_key((grid_size > user_size ? grid_size : user_size)));
     Rotation_Sequence::Dir  dir;
     string::const_iterator  it = text.cbegin();
